@@ -1,23 +1,28 @@
 import time
 import multiprocessing
 
-try:
-    def square(numbers):
-        for n in numbers:
-            print('square:' , str(n*n))
+result = []
 
-except Exception as e:
-    print(e)
+def square_cube(number):
+    for n in number:
+        print(f'square is {n*n}')
+        print(result.append(n*n*n))
+        print('he cube is: ', result)
 
-if __name__ == '__main__':
+
+
+if __name__=="__main__":
+
     try:
-        t1 = time.time()
-        array = [6,7,3,2]
-        t = multiprocessing.Process(target=square , args=(array,))
+        t = time.time()
+        array = [2,3,4,5]
+        m1 = multiprocessing.Process(target=square_cube , args=(array,))
 
-        t.start()
-        t.join()
-        print('Time in took to complete the program' , time.time()-t1)
-        
+        m1.start()
+        m1.join()
+
+        print(result)
+        print(f'Time it took to complete the program:  {time.time() - t}')
+
     except Exception as e:
-        print('Error :', e)                
+        print(e)    
